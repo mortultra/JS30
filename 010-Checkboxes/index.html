@@ -50,10 +50,10 @@
       border-left: 1px solid #D1E2FF;
     }
   </style>
-  <!--
-  The following is a common layout you would see in an email client.
-  When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
-  -->
+    <!--
+    The following is a common layout you would see in an email client.
+    When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
+    -->
   <div class="inbox">
     <div class="item">
       <input type="checkbox">
@@ -94,6 +94,36 @@
   </div>
 
 <script>
+  // 1. create a variable that keeps track of the interactive elements of the page
+  const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+  // create a variable for the first checked box
+  let lastChecked;
+
+  // 3. create a function that intiates on event
+  function handleCheck(e) {
+    // check if they have the shift key down
+    // AND check that they are checking the box
+    // let inBetween = false is base starting point for all checkboxes
+    let inBetween = false;
+    if(e.shiftKey && this.checked) {
+      // this is the grren light
+      // loop over every checkbox
+      checkboxes.forEach(checkbox => {
+        if (checkbox === this || checkbox === lastChecked) {
+          inBetween = !inBetween;
+        };
+        if(inBetween) {
+          checkbox.checked = true;
+        }
+      });
+    }
+
+    lastChecked = this;
+  };
+
+  // 2. create an event listener for the checkboxes
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
 </script>
 </body>
 </html>
