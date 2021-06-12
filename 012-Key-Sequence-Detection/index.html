@@ -7,6 +7,21 @@
 </head>
 <body>
 <script>
+
+  // create an empty array to push the keyup instances into
+  const pressed = [];
+  const secretCode = 'stephshotass'
+
+  // 1. add event listener for any key up in the page
+  window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    pressed.push(e.key);
+    pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    if (pressed.join('').includes(secretCode)) {
+      console.log(`don't be weird`);
+    }
+    console.log(pressed);
+  });
 </script>
 </body>
 </html>
