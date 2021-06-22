@@ -20,11 +20,11 @@ const images = document.querySelectorAll(".slide-in");
 
 const checkSlide = (e) => {
   images.forEach((image) => {
-    // a variable to check when the scroll is halfway through the image
+    // a variable to check when the bottom of the browser window is halfway through the image
     const slideInAt = window.scrollY + window.innerHeight - image.height / 2;
-    // a variable to check the bottom of the image
+    // a variable to check the bottom of the image is in view
     const imageBottom = image.offsetTop + image.height;
-    // a variable to check when half of the image is in view on scroll
+    // a variable to use slideInAt to check if half of the image is in view
     const isHalfShown = slideInAt > image.offsetTop;
     // a variable to check that the image is still in view on scroll
     const isNotScrolledPast = window.scrollY < imageBottom;
